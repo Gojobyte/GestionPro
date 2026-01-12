@@ -1,0 +1,123 @@
+# {{name}} - Changelog
+
+All notable changes and events for this project.
+
+---
+
+## Project Information
+
+- **Status**: {{status}}
+- **Progress**: {{progressPercent}}%
+- **Last Updated**: {{updatedAt}}
+
+## Recent Activity
+
+{{#recentActivity}}
+### {{date}}
+
+{{#events}}
+- **[{{type}}]** {{description}}{{#time}} at {{time}}{{/time}}
+{{/events}}
+
+{{/recentActivity}}
+
+## Milestones Timeline
+
+{{#milestones}}
+### {{title}} ({{status}})
+
+- **Created**: {{createdAt}}
+- **Due Date**: {{dueDate}}
+- **Weight**: {{weight}}
+- **Progress**: {{progress}}%
+{{#completedAt}}
+- **Completed**: {{completedAt}} ✅
+{{/completedAt}}
+
+**Tasks Progress**:
+- Completed: {{tasksDone}} / {{tasksCount}}
+- Points: {{pointsDone}} / {{taskPoints}}
+
+{{/milestones}}
+
+## Tasks Completed ({{completedTasksCount}})
+
+{{#completedTasks}}
+- [x] **{{title}}** ({{points}} pts)
+  - Milestone: {{milestoneName}}
+  {{#completedAt}}- Completed: {{completedAt}}{{/completedAt}}
+  {{#dueDate}}- Was due: {{dueDate}}{{/dueDate}}
+{{/completedTasks}}
+
+## Tasks In Progress ({{inProgressTasksCount}})
+
+{{#inProgressTasks}}
+- [ ] **{{title}}** ({{points}} pts)
+  - Milestone: {{milestoneName}}
+  - Status: DOING
+  {{#dueDate}}- Due: {{dueDate}}{{/dueDate}}
+{{/inProgressTasks}}
+
+## Pending Tasks ({{todoTasksCount}})
+
+{{#todoTasks}}
+- [ ] **{{title}}** ({{points}} pts)
+  - Milestone: {{milestoneName}}
+  {{#dueDate}}- Due: {{dueDate}}{{/dueDate}}
+{{/todoTasks}}
+
+## Blockers History
+
+{{#hasBlockers}}
+### Current Blockers ({{blockedCount}})
+
+{{#blockedMilestones}}
+- **Milestone**: {{title}} - BLOCKED
+  {{#blockedReason}}- Reason: {{blockedReason}}{{/blockedReason}}
+  - Blocked since: {{updatedAt}}
+{{/blockedMilestones}}
+
+{{#blockedTasks}}
+- **Task**: {{title}} - BLOCKED
+  {{#blockedReason}}- Reason: {{blockedReason}}{{/blockedReason}}
+  - Blocked since: {{updatedAt}}
+{{/blockedTasks}}
+
+{{/hasBlockers}}
+
+{{^hasBlockers}}
+No active blockers at this time.
+{{/hasBlockers}}
+
+## Project Stats
+
+- **Total Tasks Created**: {{tasksTotal}}
+- **Total Points**: {{pointsTotal}}
+- **Tasks Completed**: {{tasksDone}} ({{completionRate}}%)
+- **Points Completed**: {{pointsDone}} ({{pointsCompletionRate}}%)
+- **Active Milestones**: {{activeMilestonesCount}}
+- **Completed Milestones**: {{completedMilestonesCount}}
+
+## Timeline
+
+- **Project Start**: {{startDate}}
+- **Target Completion**: {{targetDate}}
+- **Current Date**: {{generatedAt}}
+- **Days Elapsed**: {{daysElapsed}}
+- **Days Remaining**: {{daysRemaining}}
+
+{{#overdue}}
+⚠️ **Note**: Project is past target date
+{{/overdue}}
+
+## Health History
+
+- **Current Health**: {{health}}
+{{#healthHistory}}
+- {{date}}: {{healthStatus}}
+{{/healthHistory}}
+
+---
+
+**Changelog Generated**: {{generatedAt}}
+**Format Version**: 1.0.0

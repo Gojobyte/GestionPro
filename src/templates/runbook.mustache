@@ -1,0 +1,174 @@
+# {{name}} - Runbook
+
+## Quick Reference
+
+- **Project**: {{name}}
+- **Status**: {{status}}
+- **Health**: {{health}}
+- **Progress**: {{progressPercent}}%
+
+## Getting Started
+
+### Project Overview
+
+{{description}}
+
+### Objectives
+
+{{objectives}}
+
+## Current Status
+
+### Progress Summary
+
+- **Milestones**: {{milestonesDone}} / {{milestonesCount}} completed
+- **Tasks**: {{tasksDone}} / {{tasksTotal}} completed
+- **Points**: {{pointsDone}} / {{pointsTotal}} completed
+- **Health**: {{health}}
+
+### Active Work
+
+#### In Progress ({{tasksInProgressCount}})
+
+{{#inProgressTasks}}
+- **{{title}}**
+  - Points: {{points}}
+  - Milestone: {{milestoneName}}
+  {{#dueDate}}- Due: {{dueDate}}{{/dueDate}}
+{{/inProgressTasks}}
+
+{{^inProgressTasks}}
+No tasks currently in progress.
+{{/inProgressTasks}}
+
+### Upcoming Work
+
+#### Next Tasks ({{tasksToDoCount}})
+
+{{#todoTasks}}
+- **{{title}}**
+  - Points: {{points}}
+  - Milestone: {{milestoneName}}
+  {{#dueDate}}- Due: {{dueDate}}{{/dueDate}}
+{{/todoTasks}}
+
+## Blockers & Issues
+
+{{#hasBlockers}}
+### Active Blockers ({{blockedCount}})
+
+{{#blockedMilestones}}
+#### Milestone: {{title}}
+- **Status**: BLOCKED
+- **Weight**: {{weight}}
+{{#blockedReason}}
+- **Reason**: {{blockedReason}}
+{{/blockedReason}}
+{{/blockedMilestones}}
+
+{{#blockedTasks}}
+#### Task: {{title}}
+- **Status**: BLOCKED
+- **Points**: {{points}}
+- **Milestone**: {{milestoneName}}
+{{#blockedReason}}
+- **Reason**: {{blockedReason}}
+{{/blockedReason}}
+
+**Action Required**: Resolve blocker to unblock task
+{{/blockedTasks}}
+
+{{/hasBlockers}}
+
+{{^hasBlockers}}
+### No Active Blockers
+
+Project is progressing without blockers. Continue normal workflow.
+{{/hasBlockers}}
+
+## Milestones Checklist
+
+{{#milestones}}
+### [{{statusSymbol}}] {{title}}
+
+- **Weight**: {{weight}} ({{weightPercent}}% of project)
+- **Progress**: {{progress}}%
+- **Status**: {{status}}
+- **Due**: {{dueDate}}
+- **Tasks**: {{tasksDone}} / {{tasksCount}} completed
+
+{{#description}}
+**Description**: {{description}}
+{{/description}}
+
+**Next Steps**:
+{{#tasksNotDone}}
+- [ ] {{title}} ({{points}} pts){{#dueDate}} - Due: {{dueDate}}{{/dueDate}}
+{{/tasksNotDone}}
+
+{{/milestones}}
+
+## Daily Workflow
+
+### 1. Check Status
+- Review current progress: {{progressPercent}}%
+- Check for blockers: {{blockedCount}} active
+- Identify in-progress tasks: {{tasksInProgressCount}}
+
+### 2. Work on Tasks
+- Focus on tasks with earliest due dates
+- Update task status as you progress (TODO → DOING → DONE)
+- Document blockers immediately when encountered
+
+### 3. Update Progress
+- Mark completed tasks as DONE
+- Move new tasks to DOING when started
+- Add blocked reason if task becomes blocked
+
+### 4. Review Milestones
+- Check milestone progress regularly
+- Ensure milestone on track for due date
+- Complete all milestone tasks before marking milestone DONE
+
+## Key Dates
+
+- **Start Date**: {{startDate}}
+- **Target Date**: {{targetDate}}
+- **Days Remaining**: {{daysRemaining}}
+
+{{#overdue}}
+⚠️ **PROJECT IS OVERDUE** - Target date has passed
+{{/overdue}}
+
+## Escalation
+
+### When to Escalate
+
+1. **Blocker persists** > 3 days without resolution
+2. **Milestone at risk** of missing due date
+3. **Health status** degraded to LATE
+4. **Multiple blockers** (> 3 simultaneous)
+
+### Escalation Actions
+
+1. Document blocker details in task blockedReason
+2. Review milestone dependencies
+3. Consider scope adjustment if needed
+4. Update target dates if necessary
+
+## Quick Commands
+
+- **Create Task**: Add to appropriate milestone
+- **Move Task**: Update status (TODO/DOING/DONE/BLOCKED)
+- **Block Task**: Set status to BLOCKED and add blockedReason
+- **Complete Milestone**: Mark milestone as DONE when all tasks complete
+
+## Contact & Resources
+
+- **Tags**: {{#tags}}{{.}}{{^last}}, {{/last}}{{/tags}}
+- **Priority**: {{priority}}
+
+---
+
+**Last Updated**: {{generatedAt}}
+**Runbook Version**: 1.0

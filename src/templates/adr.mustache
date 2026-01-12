@@ -1,0 +1,191 @@
+# {{name}} - Architecture Decision Records
+
+## Project Context
+
+**Project**: {{name}}
+**Description**: {{description}}
+**Status**: {{status}}
+**Priority**: {{priority}}
+
+---
+
+## ADR Format
+
+Each decision in this project follows this structure:
+
+- **Date**: When the decision was made
+- **Status**: Proposed / Accepted / Deprecated / Superseded
+- **Context**: What forces are at play
+- **Decision**: What was decided
+- **Consequences**: What are the results
+
+---
+
+## Key Decisions
+
+### ADR-001: Milestone-Based Progress Tracking
+
+**Date**: {{createdAt}}
+**Status**: Accepted
+
+**Context**:
+Need a robust way to track project progress across multiple work streams with different levels of importance.
+
+**Decision**:
+Implement weighted milestone system where:
+- Each milestone has a weight (≥ 1)
+- Project progress = weighted sum of milestone progress
+- Milestone progress calculated from task points completion
+- Default "GENERAL" milestone (weight 10) for uncategorized tasks
+
+**Consequences**:
+- ✅ Clear progress visibility
+- ✅ Flexible work organization
+- ✅ Weighted importance reflects reality
+- ⚠️ Requires upfront milestone planning
+- ⚠️ Weight adjustment affects overall progress
+
+---
+
+### ADR-002: Task Point System
+
+**Date**: {{createdAt}}
+**Status**: Accepted
+
+**Context**:
+Tasks vary in complexity and effort. Need a way to quantify relative size.
+
+**Decision**:
+- Every task has a point value (default: 1)
+- Points represent relative effort/complexity
+- Milestone progress based on points completed
+- No strict time mapping (points ≠ hours)
+
+**Consequences**:
+- ✅ Better progress granularity
+- ✅ Reflects actual work completion
+- ✅ Flexible estimation
+- ⚠️ Requires consistent estimation practice
+
+---
+
+### ADR-003: Four-State Task Workflow
+
+**Date**: {{createdAt}}
+**Status**: Accepted
+
+**Context**:
+Need clear task states that reflect real-world development workflow.
+
+**Decision**:
+Implement 4 task states:
+- TODO: Not started
+- DOING: In progress
+- DONE: Completed
+- BLOCKED: Waiting on dependency/issue
+
+**Consequences**:
+- ✅ Clear visibility of blockers
+- ✅ Simple workflow
+- ✅ Kanban-friendly
+- ⚠️ Blocked tasks require explicit reasons
+
+---
+
+### ADR-004: Health Calculation Model
+
+**Date**: {{createdAt}}
+**Status**: Accepted
+
+**Context**:
+Need quick project health assessment without deep analysis.
+
+**Decision**:
+Calculate health based on:
+- AT_RISK: Any blockers exist (tasks or milestones)
+- LATE: Target date passed AND progress < 100%
+- ON_TRACK: No blockers, within schedule
+
+**Consequences**:
+- ✅ Immediate health visibility
+- ✅ Proactive blocker awareness
+- ✅ Simple logic
+- ⚠️ Single blocker triggers AT_RISK (conservative)
+
+---
+
+## Project-Specific Decisions
+
+### Current Milestone Structure ({{milestonesCount}} milestones)
+
+{{#milestones}}
+#### {{title}} (Weight: {{weight}})
+
+**Rationale**: {{#description}}{{description}}{{/description}}{{^description}}Core organizational milestone{{/description}}
+
+**Scope**: {{tasksCount}} tasks ({{taskPoints}} points)
+
+**Impact**: {{weightPercent}}% of project progress
+
+{{/milestones}}
+
+---
+
+## Decision Metrics
+
+### By The Numbers
+
+- **Total Milestones**: {{milestonesCount}}
+- **Total Weight**: {{totalWeight}}
+- **Total Tasks**: {{tasksTotal}}
+- **Total Points**: {{pointsTotal}}
+- **Average Tasks per Milestone**: {{avgTasksPerMilestone}}
+- **Average Points per Task**: {{avgPointsPerTask}}
+
+### Progress Model Validation
+
+- **Current Progress**: {{progressPercent}}%
+- **Tasks Completed**: {{tasksDone}} / {{tasksTotal}} ({{completionRate}}%)
+- **Points Completed**: {{pointsDone}} / {{pointsTotal}} ({{pointsCompletionRate}}%)
+
+**Alignment Check**: Progress model accurately reflects {{progressPercent}}% completion
+
+---
+
+## Deprecated / Superseded Decisions
+
+{{#deprecatedDecisions}}
+### {{title}}
+
+**Original Date**: {{date}}
+**Deprecated**: {{deprecatedDate}}
+**Reason**: {{reason}}
+**Superseded By**: {{supersededBy}}
+
+{{/deprecatedDecisions}}
+
+{{^deprecatedDecisions}}
+No deprecated decisions at this time.
+{{/deprecatedDecisions}}
+
+---
+
+## Future Considerations
+
+### Potential Decisions Needed
+
+{{#hasPendingIssues}}
+- Review milestone weights if project priorities shift
+- Consider sub-milestones if any milestone has > 20 tasks
+- Evaluate point calibration after first milestone completion
+{{/hasPendingIssues}}
+
+{{#hasBlockers}}
+- **Active Blockers**: {{blockedCount}} - May need dependency management ADR
+{{/hasBlockers}}
+
+---
+
+**ADR Document Generated**: {{generatedAt}}
+**Format**: Lightweight ADR for project tracking
+**Version**: 1.0

@@ -1,0 +1,65 @@
+# {{name}}
+
+**{{description}}**
+
+---
+
+## Project Information
+
+- **Priority**: {{priority}}
+- **Status**: {{status}}
+- **Start Date**: {{startDate}}
+- **Target Date**: {{targetDate}}
+
+## Objectives
+
+{{objectives}}
+
+## Tags
+
+{{#tags}}
+- {{.}}
+{{/tags}}
+
+## Progress
+
+- **Overall Progress**: {{progressPercent}}%
+- **Tasks Completed**: {{tasksDone}} / {{tasksTotal}}
+- **Points Completed**: {{pointsDone}} / {{pointsTotal}}
+- **Health**: {{health}}
+
+## Milestones
+
+{{#milestones}}
+### {{title}} (Weight: {{weight}})
+
+- **Status**: {{status}}
+- **Due Date**: {{dueDate}}
+- **Progress**: {{progress}}%
+
+{{#description}}
+{{description}}
+{{/description}}
+
+{{/milestones}}
+
+## Tasks Summary
+
+### Completed Tasks ({{completedTasksCount}})
+{{#completedTasks}}
+- [x] **{{title}}** ({{points}} pts){{#dueDate}} - Due: {{dueDate}}{{/dueDate}}
+{{/completedTasks}}
+
+### In Progress ({{inProgressTasksCount}})
+{{#inProgressTasks}}
+- [ ] **{{title}}** ({{points}} pts){{#dueDate}} - Due: {{dueDate}}{{/dueDate}}
+{{/inProgressTasks}}
+
+### Blocked Tasks ({{blockedTasksCount}})
+{{#blockedTasks}}
+- [ ] **{{title}}** ({{points}} pts) - **BLOCKED**{{#blockedReason}}: {{blockedReason}}{{/blockedReason}}
+{{/blockedTasks}}
+
+---
+
+Generated on {{generatedAt}}

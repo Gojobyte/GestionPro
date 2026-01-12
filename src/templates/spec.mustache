@@ -1,0 +1,96 @@
+# {{name}} - Technical Specification
+
+## Overview
+
+{{description}}
+
+## Project Metadata
+
+- **Project ID**: {{id}}
+- **Priority**: {{priority}}
+- **Status**: {{status}}
+- **Created**: {{createdAt}}
+- **Last Updated**: {{updatedAt}}
+
+## Timeline
+
+- **Start Date**: {{startDate}}
+- **Target Date**: {{targetDate}}
+- **Duration**: {{duration}} days
+
+## Objectives
+
+{{objectives}}
+
+## Scope
+
+### Milestones ({{milestonesCount}})
+
+{{#milestones}}
+#### {{order}}. {{title}}
+
+- **ID**: {{id}}
+- **Weight**: {{weight}} ({{weightPercent}}% of project)
+- **Status**: {{status}}
+- **Due Date**: {{dueDate}}
+- **Progress**: {{progress}}%
+
+{{#description}}
+**Description**: {{description}}
+{{/description}}
+
+**Tasks** ({{tasksCount}}):
+{{#tasks}}
+- [{{statusSymbol}}] {{title}} ({{points}} pts) - {{status}}{{#dueDate}} - Due: {{dueDate}}{{/dueDate}}
+{{/tasks}}
+
+{{/milestones}}
+
+## Task Breakdown
+
+- **Total Tasks**: {{tasksTotal}}
+- **Total Points**: {{pointsTotal}}
+- **Completed**: {{tasksDone}} tasks ({{pointsDone}} pts)
+- **In Progress**: {{tasksInProgress}} tasks
+- **Blocked**: {{tasksBlocked}} tasks
+- **Remaining**: {{tasksRemaining}} tasks ({{pointsRemaining}} pts)
+
+## Dependencies & Blockers
+
+{{#hasBlockers}}
+### Current Blockers
+
+{{#blockedMilestones}}
+- **Milestone**: {{title}}
+  - Status: BLOCKED
+  - Reason: {{blockedReason}}
+{{/blockedMilestones}}
+
+{{#blockedTasks}}
+- **Task**: {{title}}
+  - Status: BLOCKED
+  - Reason: {{blockedReason}}
+{{/blockedTasks}}
+{{/hasBlockers}}
+
+{{^hasBlockers}}
+No blockers currently identified.
+{{/hasBlockers}}
+
+## Tags
+
+{{#tags}}
+- {{.}}
+{{/tags}}
+
+## Success Criteria
+
+- All milestones completed ({{milestonesCount}} total)
+- All tasks done ({{tasksTotal}} total)
+- Target date met: {{targetDate}}
+
+---
+
+**Document Version**: 1.0
+**Generated**: {{generatedAt}}
+**Generator**: Dev Organizer v1.0

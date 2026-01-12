@@ -1,0 +1,125 @@
+# {{name}} - Architecture Document
+
+## System Overview
+
+{{description}}
+
+## Project Structure
+
+### Milestones Architecture
+
+The project is organized into {{milestonesCount}} major milestones:
+
+{{#milestones}}
+#### {{order}}. {{title}} (Weight: {{weight}})
+
+- **Responsibility**: {{#description}}{{description}}{{/description}}{{^description}}Core milestone for project organization{{/description}}
+- **Completion Criteria**: {{tasksCount}} tasks completed
+- **Impact**: {{weightPercent}}% of overall project progress
+
+{{/milestones}}
+
+## Component Breakdown
+
+### Tasks by Milestone
+
+{{#milestones}}
+#### {{title}}
+
+Total: {{tasksCount}} tasks ({{taskPoints}} points)
+
+**By Status**:
+- Done: {{tasksDone}} tasks
+- In Progress: {{tasksInProgress}} tasks
+- Todo: {{tasksTodo}} tasks
+- Blocked: {{tasksBlocked}} tasks
+
+{{/milestones}}
+
+## Progress Tracking
+
+### Calculation Model
+
+1. **Milestone Progress**:
+   - If milestone status is DONE → 100%
+   - Otherwise: (completed task points / total task points) × 100
+
+2. **Project Progress**:
+   - Weighted sum: Σ(milestone.weight × milestone.progress) / Σ(milestone.weight)
+
+### Current Metrics
+
+- **Overall Progress**: {{progressPercent}}%
+- **Velocity**: {{tasksDone}} tasks completed out of {{tasksTotal}}
+- **Points Velocity**: {{pointsDone}} / {{pointsTotal}} points
+- **Health Status**: {{health}}
+
+## Risk Assessment
+
+### Health Indicators
+
+**Current Status**: {{health}}
+
+{{#isAtRisk}}
+⚠️ **AT RISK**: Project has blockers that need attention
+{{/isAtRisk}}
+
+{{#isLate}}
+🔴 **LATE**: Target date passed and project not complete
+{{/isLate}}
+
+{{#isOnTrack}}
+✅ **ON TRACK**: No blockers, progressing as planned
+{{/isOnTrack}}
+
+### Blockers ({{blockedCount}})
+
+{{#hasBlockers}}
+{{#blockedMilestones}}
+- **Milestone**: {{title}} - BLOCKED
+  {{#blockedReason}}- Reason: {{blockedReason}}{{/blockedReason}}
+{{/blockedMilestones}}
+
+{{#blockedTasks}}
+- **Task**: {{title}} - BLOCKED
+  {{#blockedReason}}- Reason: {{blockedReason}}{{/blockedReason}}
+{{/blockedTasks}}
+{{/hasBlockers}}
+
+{{^hasBlockers}}
+No active blockers.
+{{/hasBlockers}}
+
+## Data Model
+
+### Entities
+
+- **Project**: 1 instance
+- **Milestones**: {{milestonesCount}} instances
+- **Tasks**: {{tasksTotal}} instances
+- **Total Points**: {{pointsTotal}}
+
+### Relationships
+
+- Project → Milestones (1:N)
+- Milestones → Tasks (1:N)
+- Project → Tasks (1:N, via milestones)
+
+## Tags & Categories
+
+{{#tags}}
+- {{.}}
+{{/tags}}
+
+## Timeline
+
+- **Start**: {{startDate}}
+- **Target**: {{targetDate}}
+- **Duration**: {{duration}} days
+- **Elapsed**: {{elapsed}} days
+
+---
+
+**Document Version**: 1.0
+**Generated**: {{generatedAt}}
+**Architecture Type**: Milestone-based weighted progress tracking
